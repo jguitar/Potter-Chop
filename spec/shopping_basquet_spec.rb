@@ -1,4 +1,4 @@
-require 'shopping_basquet'
+require './src/shopping_basquet'
 
 describe "Shopping Basquet Basic Specs" do
   before(:each) do

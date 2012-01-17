@@ -3,6 +3,7 @@ require './src/book_store'
 describe "Book Store Specs" do
   before(:each) do
    @book_store = Book_store.new
+   @book_store.clear_database
   end
 
   it "should be 0 orders if is empty" do

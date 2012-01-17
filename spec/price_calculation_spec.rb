@@ -2,8 +2,8 @@ require './src/price_calculation'
 
 describe "Price calculation Basic Specs" do
   before(:each) do
-   @price_calc = Price_calculation.new
-  end
+    @price_calc = Price_calculation.new
+  end  
 
   it "should be a price of 0 with 0 items" do
     price = @price_calc.price([])

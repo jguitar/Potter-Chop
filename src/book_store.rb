@@ -5,7 +5,7 @@ class Book_store
   def initialize
     @mongo = Mongo::Connection.new
     @db = @mongo.db("potterchop")
-    @orders = @db["order"] #@db.collection("order")
+    @orders = @db["order"]
   end
   
   def clear_database
@@ -28,6 +28,12 @@ class Book_store
   end
   
   def order_list
-    return @orders
+    result = []
+    @orders.find().each do |row|
+      order_string = "ID: #{row['_id']} Name: #{row['name']}"
+      result << order_string
+    end
+    
+    return result
   end
 end

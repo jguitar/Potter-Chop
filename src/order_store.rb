@@ -1,4 +1,5 @@
 require_relative './order_database'
+require_relative './order'
 
 class OrderStore
   
@@ -7,15 +8,11 @@ class OrderStore
   end
   
   def new_order(books, name, address)
-    if books.empty? || name == "" || address == ""
-      return nil
+    order = Order.new(books, name, address)
+    if order.valid?
+      return @order_db.get_orders.insert(order.to_hash)
     else
-      order = Hash.new
-      order['books'] = books
-      order['name'] = name
-      order['address'] = address
-      
-      return @order_db.get_orders.insert(order)
+      return nil
     end
   end
   
@@ -23,8 +20,8 @@ class OrderStore
     orders = @order_db.get_orders.find()
     result = []
     orders.each do |row|
-      order_string = "ID: #{row['_id']} Name: #{row['name']}"
-      result << order_string
+      order = Order.new(row['books'], row['name'], row['address'])
+      result << order
     end
     
     return result

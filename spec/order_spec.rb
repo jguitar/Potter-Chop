@@ -1,6 +1,13 @@
 require './src/order.rb'
 
 describe "Orders specs" do
+  it "should be empty data if we add a non valid order" do
+    order = Order.new([1, 2, 3], "", "")
+    order.books.should eql []
+    order.name.should eql nil
+    order.address.should eql nil
+  end
+  
   it "should have the same atributes if we add a order" do
     order = Order.new([1, 2, 3], "John Doe", "C// Santo Tomas 25, Valencia")
     order.books.should eql [1, 2, 3]

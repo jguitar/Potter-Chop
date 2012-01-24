@@ -1,4 +1,4 @@
-class Price_calculation
+class PriceCalculation
   
   protected
   

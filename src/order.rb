@@ -1,3 +1,5 @@
+require './src/price_calculation'
+
 class Order
   attr_accessor :books
   attr_accessor :name
@@ -17,6 +19,7 @@ class Order
     result['books'] = books
     result['name'] = name
     result['address'] = address
+    result['price'] = get_price
     return result
   end
 
@@ -26,5 +29,12 @@ class Order
     else
       return true
     end
+  end
+  
+  private
+  
+  def get_price
+    @price_calc = PriceCalculation.new if @price_calc.nil?
+    return @price_calc.price(books)
   end
 end

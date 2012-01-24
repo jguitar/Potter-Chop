@@ -25,4 +25,10 @@ describe "Orders specs" do
     order_hash = order.to_hash
     order_hash.should be_an_instance_of Hash
   end
+  
+  it "should have a price if we add a valid order" do
+    order = Order.new([1, 2, 3], "John Doe", "C// Santo Tomas 25, Valencia")
+    order_hash = order.to_hash
+    order_hash['price'].should_not eql 0
+  end
 end

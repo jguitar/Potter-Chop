@@ -1,4 +1,5 @@
 require 'mongo'
+require './src/order'
 
 class OrderDatabase
   DB_NAME = "potterchop"
@@ -17,6 +18,10 @@ class OrderDatabase
   end
   
   def get_orders
-    @orders
+    @orders.find()
+  end
+  
+  def insert(order)
+    @orders.insert(order.to_hash)
   end
 end

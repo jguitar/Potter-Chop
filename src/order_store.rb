@@ -1,23 +1,19 @@
-require_relative './order_database'
-require_relative './order'
+require './src/order_database'
+require './src/order'
 
 class OrderStore
-  
-  def initialize(order_db)
-    @order_db = order_db
-  end
   
   def new_order(books, name, address)
     order = Order.new(books, name, address)
     if order.valid?
-      return @order_db.get_orders.insert(order.to_hash)
+      return get_repo.insert(order)
     else
       return nil
     end
   end
   
   def order_list
-    orders = @order_db.get_orders.find()
+    orders = get_repo.get_orders
     result = []
     orders.each do |row|
       order = Order.new(row['books'], row['name'], row['address'])
@@ -25,5 +21,12 @@ class OrderStore
     end
     
     return result
+  end
+  
+  private
+  
+  def get_repo
+    @order_db = OrderDatabase.new if @order_db.nil?
+    return @order_db
   end
 end

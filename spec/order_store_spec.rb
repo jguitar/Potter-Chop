@@ -1,4 +1,5 @@
 require './src/order_store'
+require './src/order_database'
 
 module OrderStoreSpecHelper
   def add_valid_order(order_store)
@@ -10,9 +11,9 @@ describe "Order Store Specs" do
   include OrderStoreSpecHelper
   
   before(:each) do
-   order_db = OrderDatabase.new
-   order_db.clear
-   @order_store = OrderStore.new(order_db)
+   @db = OrderDatabase.new if @db.nil?
+   @db.clear
+   @order_store = OrderStore.new
   end
 
   it "should be 0 orders if is empty" do

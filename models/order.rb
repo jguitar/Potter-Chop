@@ -1,4 +1,4 @@
-require './src/price_calculation'
+require './models/price_calculation'
 
 class Order
   attr_accessor :books

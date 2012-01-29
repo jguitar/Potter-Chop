@@ -1,5 +1,5 @@
 require 'mongo'
-require './src/order'
+require './models/order'
 
 class OrderDatabase
   DB_NAME = "potterchop"

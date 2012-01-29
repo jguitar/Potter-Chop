@@ -1,5 +1,5 @@
-require './src/order_store'
-require './src/order_database'
+require './models/order_store'
+require './models/order_database'
 
 module OrderStoreSpecHelper
   def add_valid_order(order_store)

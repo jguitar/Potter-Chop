@@ -1,5 +1,5 @@
-require './src/order_database'
-require './src/order'
+require './models/order_database'
+require './models/order'
 
 describe "Order database specs" do
   

@@ -1,4 +1,4 @@
-require './src/order.rb'
+require './models/order.rb'
 
 describe "Orders specs" do
   it "should be empty data if we add a non valid order" do

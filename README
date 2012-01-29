@@ -1,5 +1,9 @@
-Proyecto para poner en práctica la base de datos MongoDB.
-Para ello usaré la clase creada en la Kata-Potter y crear un entorno donde se introduzcan pedidos y se puedan listar.
+Proyecto para crear un entorno donde se introduzcan pedidos y se puedan listar.
+Se usará la clase creada en la Kata-Potter
+
+ - Ok - Poner en práctica la base de datos MongoDB.
+ - __ - Poner en práctica la librería Sinatra de Ruby
+ - __ - Poner en práctica la librería jQuery de JavaScript
 
 Empezamos!
 

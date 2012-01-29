@@ -1,4 +1,4 @@
-require './src/price_calculation'
+require './models/price_calculation'
 
 describe "Price calculation Basic Specs" do
   before(:each) do

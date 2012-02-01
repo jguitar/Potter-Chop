@@ -8,6 +8,19 @@ describe "Orders specs" do
     order.address.should eql nil
   end
   
+  it "should have and Array if we add books as String" do
+    order = Order.new([1, 2, 3], "John Doe", "C// Santo Tomas 25, Valencia")
+    order.books.should be_an_instance_of Array
+    order.books = '1, 2, 3'
+    order.books.should be_an_instance_of Array
+    order.books.should eql [1, 2, 3]
+    order.name.should eql "John Doe"
+    order.address.should eql "C// Santo Tomas 25, Valencia"
+    
+    order = Order.new("1, 2, 3", "John Doe", "C// Santo Tomas 25, Valencia")
+    order.books.should be_an_instance_of Array
+  end
+  
   it "should have the same atributes if we add a order" do
     order = Order.new([1, 2, 3], "John Doe", "C// Santo Tomas 25, Valencia")
     order.books.should eql [1, 2, 3]

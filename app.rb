@@ -1,4 +1,6 @@
 require 'sinatra'
+require './models/order'
+require './models/order_store'
 
 get '/' do
   erb :index
@@ -17,5 +19,13 @@ get '/api/order' do
 end
 
 post '/api/order' do
-  "OK!"
+  order = Order.new(params['books'], params['name'], params['address'])
+  if order.valid? then
+    #order_store = OrderStore.new
+    #order_store.new_order(order.books, order.name, order.address)
+    @price = order.get_price
+    erb :order_ok
+  else
+    erb :order_ko
+  end
 end

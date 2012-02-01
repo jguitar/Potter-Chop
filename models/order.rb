@@ -31,10 +31,17 @@ class Order
     end
   end
   
-  private
-  
   def get_price
     @price_calc = PriceCalculation.new if @price_calc.nil?
     return @price_calc.price(books)
+  end
+  
+  def books
+    if @books.class == String
+      @books.gsub!(',', ' ')
+      @books.split.map(&:to_i)
+    else
+      @books
+    end
   end
 end

@@ -11,19 +11,24 @@ get '/new_order' do
 end
 
 get '/list_orders' do
+  order_store = OrderStore.new
+  @list = order_store.order_list
+  
   erb :list_orders
 end
 
 get '/api/order' do
-  "Listing all orders\nIn construction" 
+  "Listing all orders\nIn construction"
 end
 
 post '/api/order' do
   order = Order.new(params['books'], params['name'], params['address'])
   if order.valid? then
-    #order_store = OrderStore.new
-    #order_store.new_order(order.books, order.name, order.address)
     @price = order.get_price
+    
+    order_store = OrderStore.new
+    order_store.new_order(order.books, order.name, order.address)
+    
     erb :order_ok
   else
     erb :order_ko

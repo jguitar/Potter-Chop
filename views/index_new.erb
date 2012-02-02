@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PotterChop</title>
+<script type="text/javascript">
+    //var numero1 = 5;
+    //var numero2 = 8;
+    //if(numero1 <= numero2) {
+    //    alert("numero1 no es mayor que numero2");
+    //}
+    //if(numero2 >= 0) {
+    //    alert("numero2 es positivo");
+    //}   
+    //if(numero1 < 0 || numero1 != 0) {
+    //    alert("numero1 es negativo o distinto de cero");
+    //}
+    //if(++numero1 < numero2) {
+    //    alert("Incrementar en 1 unidad el valor de numero1 no lo hace mayor o igual que numero2");
+    //}
+</script>
+<script type="text/javascript" src="/js/jquery-1.7.1.js"></script>
+<script type="text/javascript" src="/js/codigo.js"></script>
+</head>
+<body>
+    <h1>Welcome to the AJAX PotterChop</h1>
+    <p>Enter a valid order</p>
+    <form method="post" action="api/order">
+        <p><label>Books:<input type="text" id="books" name="books"/></label></p>
+        <p><label>Name:<input type="text" id="name" name="name"/></label></p>
+        <p><label>Address:<input type="text" id="address" name="address"/></label></p>
+        <p><label>Price:<input type="text" id="price" name="price" readonly="readonly"/></label></p>
+        <input type="submit" id="new_button" value="New" disabled="disabled"/></p>
+    </form>
+    <br/>
+    <p>These are the orders for today</p>
+    <% for item in @list %>
+    <p><b>Order</b></p>
+    <ul>
+        <li><b>Name:</b> <%= item.name %> <b>Address:</b> <%= item.address %></li>
+        <li><b>Books:</b> <%= item.books %></li>
+        <li><b>Total price:</b> <%= item.get_price %></li>
+    </ul>
+    <% end %>
+</body>
+</html>

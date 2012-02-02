@@ -3,7 +3,11 @@ require './models/order'
 require './models/order_store'
 
 get '/' do
-  erb :index
+  #erb :index
+  
+  order_store = OrderStore.new
+  @list = order_store.order_list
+  erb :index_new
 end
 
 get '/new_order' do

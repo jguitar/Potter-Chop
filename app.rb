@@ -1,10 +1,9 @@
 require 'sinatra'
+require 'json'
 require './models/order'
 require './models/order_store'
 
 get '/' do
-  #erb :index
-  
   order_store = OrderStore.new
   @list = order_store.order_list
   erb :index_new
@@ -19,6 +18,12 @@ get '/list_orders' do
   @list = order_store.order_list
   
   erb :list_orders
+end
+
+get '/api/price' do
+  order = Order.new(params[:books], "a", "a")
+  data = {price:order.get_price}.to_json
+  data
 end
 
 get '/api/order' do

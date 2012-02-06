@@ -9,17 +9,6 @@ get '/' do
   erb :index_new
 end
 
-get '/new_order' do
-  erb :new_order
-end
-
-get '/list_orders' do
-  order_store = OrderStore.new
-  @list = order_store.order_list
-  
-  erb :list_orders
-end
-
 get '/api/price' do
   order = Order.new(params[:books], "a", "a")
   data = {price:order.get_price}.to_json

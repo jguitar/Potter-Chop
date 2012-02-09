@@ -22,6 +22,14 @@ class Order
     result['price'] = get_price
     return result
   end
+  
+  def to_json
+    result = {
+      name:name,
+      address:address,
+      books:books,
+      price:get_price }
+  end
 
   def valid?(books = @books, name = @name, address = @address)
     if books.empty? || name == "" || address == ""

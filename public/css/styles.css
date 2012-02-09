@@ -1,0 +1,6 @@
+h1 { color: red; font-family: Arial; font-size: large; }
+p { color: gray; font-family: Verdana; font-size: medium; }
+.books { font-family: Verdana; font-size: medium; }
+.name { font-family: Verdana; font-weight: bold; font-size: medium; }
+.address { font-family: Verdana; font-size: medium; }
+.price { font-family: Arial; font-size: large; }

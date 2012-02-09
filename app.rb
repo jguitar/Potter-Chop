@@ -16,7 +16,13 @@ get '/api/price' do
 end
 
 get '/api/order' do
-  "Listing all orders\nIn construction"
+  order_store = OrderStore.new
+  list = order_store.order_list
+  result = []
+  list.each do |order|
+    result << order.to_json
+  end
+  result.to_json
 end
 
 post '/api/order' do

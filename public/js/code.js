@@ -18,14 +18,9 @@ function addOrder() {
    
    var order = {"books":books,"name":name,"address":address};
    
-   $.getJSON(globalURLOrder, order, function(data) {
-      console.log(data);
-      info = eval(data);
-      $("#price").attr("value", info.price);
-   });
-   
    $.post(globalURLOrder, order, function(data) {
       console.log(data);
+      loadOrders();
    });
 }
 
@@ -42,7 +37,6 @@ function validateNewOrder() {
 function addNewOrder(){
    if (validateNewOrder()) {
       addOrder();
-      loadBooks();
    } else {
       alert("The order is not valid.");
       // Refactorizar y mostrar errores con javascript, más UX.
@@ -50,20 +44,17 @@ function addNewOrder(){
 }
 
 function enablingNewButton(){
-   var validated = true;
-
-   if ($('#books').val().length === 0) validated = false;
-   if (validated && $('#name').val().length === 0) validated = false;
-   if (validated && $('#address').val().length === 0) validated = false;
-
-   if (validated) $("#new_button").removeAttr("disabled");                              
+   if (validateNewOrder()) $("#new_button").removeAttr("disabled");                              
 }
 
-function loadBooks(){
+function loadOrders(){
    
    $.getJSON(globalURLOrder, function(data){
       console.log(data);
       books = eval(data);
+      
+      
+      $('#orders').html("");
    
       $.each(books, function(i, book) {          
         var items = [];
@@ -74,23 +65,18 @@ function loadBooks(){
          
          $('<ul/>', {
             html: items.join('')
-            }).appendTo('body'); 
+            }).appendTo('#orders'); 
       });
    });
 }
 
 $(document).ready(function() {
-   // Enable/Disable new button
-   $("#new_button").attr("disabled", "disabled");
    $('input').change(enablingNewButton);
+   $('#books').change(calculatePrice);
+   $("#new_button").click(addNewOrder);
+   
+   $("#new_button").attr("disabled", "disabled");
    $('input:first').trigger('change');
    
-   // Calculating the price
-   $('#books').change(calculatePrice);
-   
-   // Load orders
-   loadBooks();
-   
-   // Add a new order
-   $("#new_button").click(addNewOrder);
+   loadOrders();
 });
